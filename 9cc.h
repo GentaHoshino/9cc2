@@ -10,9 +10,10 @@
 
 
 typedef enum {
-  TK_RESERVED, // Keywords or punctuators
-  TK_NUM,      // Integer literals
-  TK_EOF,      // End-of-file markers
+  TK_RESERVED,  // Keywords or punctuators
+  TK_IDENT,     // 識別子
+  TK_NUM,       // Integer literals
+  TK_EOF,       // End-of-file markers
 } TokenKind;
 
 // Token type
@@ -54,8 +55,13 @@ extern Token *token;
 
 // Tokenaize
 
-void error(char *fmt, ...);
+bool consume(char *op);
+void expect(char *op);
+int expect_number();
 Token *tokenize();
+
+// parse
+
 Node *expr();
 
 // codegen
